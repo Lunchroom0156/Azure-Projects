@@ -1,15 +1,17 @@
-# 06 Automation Iac
+# Automation & Infrastructure as Code Lab
 
 ## Objective
-Describe the lab objective here.
+Deploy and manage Azure resources programmatically using ARM templates, Terraform, and PowerShell.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Write ARM templates and Terraform files.
+2. Deploy resources automatically.
+3. Implement CLI/PowerShell automation scripts.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- Infrastructure as Code (IaC)
+- Automation
+- Scripting
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/deploy-iac.ps1` → PowerShell script for automated deployments

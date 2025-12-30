@@ -1,15 +1,18 @@
-# 04 Azure Storage Solutions
+# Azure Storage Solutions Lab
 
 ## Objective
-Describe the lab objective here.
+Work with different Azure storage types and secure them.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Create/manage Blob, File, Table, Queue storage accounts.
+2. Configure lifecycle policies.
+3. Apply Shared Access Signatures (SAS) and encryption.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- Azure Storage
+- Data Protection
+- Automation
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/storage-setup.ps1` → PowerShell script to provision and configure storage
+

@@ -1,15 +1,17 @@
-# 10 End To End Cloud Project
+# End-to-End Cloud Project
 
 ## Objective
-Describe the lab objective here.
+Deploy a full multi-tier Azure environment including networking, VMs, monitoring, and backup.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Deploy front-end, application, and database tiers.
+2. Configure VNets, NSGs, and Load Balancers.
+3. Implement monitoring, scaling, and backup.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- Full Infrastructure Deployment
+- Networking & Security
+- Monitoring & Automation
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/full-deployment.ps1` → PowerShell script to deploy entire lab environment

@@ -1,15 +1,17 @@
-# 07 Backup Dr Lab
+# Backup & Disaster Recovery Lab
 
 ## Objective
-Describe the lab objective here.
+Implement Azure Backup and Site Recovery for business continuity.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Configure Azure Backup for VMs and storage.
+2. Set up Azure Site Recovery for failover.
+3. Test failover and recovery scenarios.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- Backup and Recovery
+- Disaster Recovery Planning
+- Replication
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/backup-setup.ps1` → PowerShell script to configure backups and DR

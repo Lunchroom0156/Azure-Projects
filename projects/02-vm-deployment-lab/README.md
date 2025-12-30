@@ -1,15 +1,18 @@
-# 02 Vm Deployment Lab
+# VM Deployment & Management Lab
 
 ## Objective
-Describe the lab objective here.
+Deploy and manage Windows and Linux VMs in Azure, including automation and monitoring.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Deploy VMs via Azure Portal, CLI, or ARM templates.
+2. Configure VM Scale Sets.
+3. Enable VM backups and monitoring.
+4. Test VM connectivity and performance.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- VM Lifecycle Management
+- Automation
+- Monitoring and Backup
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/deploy-vms.ps1` → PowerShell script to deploy and configure VMs

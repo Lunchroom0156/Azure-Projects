@@ -1,15 +1,19 @@
-# 03 Identity Access Management
+# Identity & Access Management Lab
 
 ## Objective
-Describe the lab objective here.
+Manage Azure AD identities, groups, roles, and enforce security policies.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Create users, groups, and roles.
+2. Assign RBAC permissions.
+3. Configure Multi-Factor Authentication (MFA).
+4. Implement Conditional Access policies.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- Azure AD
+- RBAC
+- Security & Access Management
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/aad-setup.ps1` → PowerShell script to create users and configure roles
+

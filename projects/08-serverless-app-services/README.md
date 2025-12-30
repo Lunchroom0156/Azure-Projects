@@ -1,15 +1,17 @@
-# 08 Serverless App Services
+# Serverless & App Services Lab
 
 ## Objective
-Describe the lab objective here.
+Deploy and manage Azure Functions, Web Apps, and connect to databases.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Deploy Azure Functions and Web Apps.
+2. Configure scaling and authentication.
+3. Integrate with Azure SQL or CosmosDB.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- Serverless Computing
+- App Deployment
+- Integration
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/deploy-functions.ps1` → PowerShell script to deploy serverless apps
