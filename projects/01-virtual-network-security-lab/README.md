@@ -1,15 +1,19 @@
-# 01 Virtual Network Security Lab
+# Virtual Network & Security Lab
 
 ## Objective
-Describe the lab objective here.
+Build a secure, segmented Azure network with multiple VNets, subnets, and firewall rules.
 
 ## Tasks
-- Task 1
-- Task 2
+1. Create multiple VNets and subnets.
+2. Configure Network Security Groups (NSGs) with inbound/outbound rules.
+3. Set up Azure Firewall.
+4. Enable VNet Peering.
 
 ## Skills Covered
-- Skill 1
-- Skill 2
+- Azure Networking
+- Security
+- Firewall Rules
+- VNet Peering
 
-## Scripts / Templates
-- scripts/ placeholder for scripts and templates
+## Scripts
+- `scripts/setup-vnet.ps1` → PowerShell script to create VNets and NSGs
