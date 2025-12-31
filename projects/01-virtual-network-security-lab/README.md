@@ -34,7 +34,7 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
     - Created a public ip 'fw-pip'
     ![Firewall](image.png)
 
-###Create Firewall Rules
+### Create Firewall Rules
 9. Navigate to 'Azure firewall policies' and open policy named 'fwpolicy'
 10. create a rule collection as below
     Name: Allow-internet-to-VM's
