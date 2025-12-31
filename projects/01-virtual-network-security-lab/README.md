@@ -40,12 +40,12 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 7. Navigate to 'Azure firewall policies' and open policy named 'fwpolicy'
 8. create a rule collection as below
 
-    Name: Allow-internet-to-VM's
+    - Name: Allow-internet-to-VM's
     Rule type: Network
     Priority: 500
     Collection group: DefaultNetworkRuleCollectionGroup
 
-    Name: Allow-RDP
+    - Name: Allow-RDP
     Source: IP Address
     Source: 0.0.0.0/0
     Protocol: TCP
@@ -53,7 +53,7 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
     Dest Type: IP Address
     Dest: 10.0.0.0/24,10.1.0.0/24
 
-    Name: Allow-internet
+    - Name: Allow-internet
     Source: IP Address
     Source: 0.0.0.0/0
     Protocol: TCP
@@ -63,12 +63,12 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 
 9. create a rule collection as below 
 
-    Name: Allow-internet-to-VM's
+    - Name: Allow-internet-to-VM's
     Rule type: Network
     Priority: 150
     Collection group: DefaultDNATRuleCollectionGroup
 
-    Name: Allow-RDP
+    - Name: Allow-RDP
     Source: IP Address
     Source: 0.0.0.0
     Protocol: TCP
