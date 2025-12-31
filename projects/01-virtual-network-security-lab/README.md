@@ -30,7 +30,8 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 
 ### Create Firewall
 5. Create subnet called 'azurefirewallsubnet' in vnet1 and vnet 2
-6. Create firewall named 'vnet01-fw' with standard sku. create new standard firewall policy named 'fwpolicy' 
+6. Create firewall named 'vnet01-fw' with standard sku.
+    - create new standard firewall policy named 'fwpolicy' 
     - uncheck 'enable firewall management nic'
     - Selected 'use existing' virtual network 
     - Created a public ip 'fw-pip'
@@ -78,7 +79,7 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 
 
 ### Creating Vnet peering
-10. from vnet1 click **peering** 
+10. select **peering** from vnet1 
    - **Remote peering**: link name `vnet2-spoke`, allow forwarding for `vnet2`
    - **Local peering**: link name `vnet1-hub`, allow forwarding for `vnet1`
 
