@@ -78,9 +78,8 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 
 
 ### Creating Vnet peering
-10. from vnet1 click 'peering' 
-11. remote peering: Peering link name - vnet2-spoke,  
-    allow forwarding for vnet2
+10. from vnet1 click **peering** 
+   - **Remote peering**: link name `vnet2-spoke`, allow forwarding for `vnet2`
+   - **Local peering**: link name `vnet1-hub`, allow forwarding for `vnet1`
 
-    local peering: peering name - vnet1-hub,allow forwarding for vnet1
 
