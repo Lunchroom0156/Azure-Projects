@@ -20,23 +20,25 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 
 # Steps Completed
 1. Create resource group 'project01-rg'
-2. Create vnet's called 'vnet1' with address space '10.0.0.0' and /24 subnet.Create 'vnet2' with address space '10.1.0.0' and /24 subnet.
-4. Create NSG 'vnet1-nsg' and associate with vnet1 subnet
+2. Create vnets
+   - 'vnet1' with address space '10.0.0.0' and /24 subnet.
+   - 'vnet2' with address space '10.1.0.0' and /24 subnet.
+3. Create NSG 'vnet1-nsg' and associate with vnet1 subnet
     - Create inbound nsg rule called allow_rdp
     - port 3389 and priority 1000
-5. Create NSG 'vnet2-nsg' and associate with vnet2 subnet
+4. Create NSG 'vnet2-nsg' and associate with vnet2 subnet
 
 ### Create Firewall
-6. Create subnet called 'azurefirewallsubnet' in vnet1 and vnet 2
-7. Create firewall named 'vnet01-fw' with standard sku. create new standard firewall policy named 'fwpolicy' 
+5. Create subnet called 'azurefirewallsubnet' in vnet1 and vnet 2
+6. Create firewall named 'vnet01-fw' with standard sku. create new standard firewall policy named 'fwpolicy' 
     - uncheck 'enable firewall management nic'
     - Selected 'use existing' virtual network 
     - Created a public ip 'fw-pip'
     ![Firewall](image.png)
 
 ### Create Firewall Rules
-9. Navigate to 'Azure firewall policies' and open policy named 'fwpolicy'
-10. create a rule collection as below
+7. Navigate to 'Azure firewall policies' and open policy named 'fwpolicy'
+8. create a rule collection as below
 
     Name: Allow-internet-to-VM's
     Rule type: Network
@@ -59,7 +61,7 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
     Dest Type: IP Address
     Dest: 10.0.0.0/24,10.1.0.0/24
 
-12. create a rule collection as below 
+9. create a rule collection as below 
 
     Name: Allow-internet-to-VM's
     Rule type: Network
@@ -76,8 +78,8 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 
 
 ### Creating Vnet peering
-12. from vnet1 click 'peering' 
-13. remote peering: Peering link name - vnet2-spoke,  
+10. from vnet1 click 'peering' 
+11. remote peering: Peering link name - vnet2-spoke,  
     allow forwarding for vnet2
 
     local peering: peering name - vnet1-hub,allow forwarding for vnet1
