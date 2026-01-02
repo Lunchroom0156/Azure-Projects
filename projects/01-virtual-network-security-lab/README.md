@@ -39,7 +39,7 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 
 ### Create Firewall Rules
 7. Navigate to 'Azure firewall policies' and open policy named 'fwpolicy'
-8. create a rule collection as below
+8. create a network rule collection as below
 
     - Name: Allow-internet-to-VM's
     Rule type: Network
@@ -62,7 +62,7 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
     Dest Type: IP Address
     Dest: 10.0.0.0/24,10.1.0.0/24
 
-9. create a rule collection as below 
+9. create a NAT rule collection as below 
 
     - Name: Allow-internet-to-VM's
     Rule type: Network

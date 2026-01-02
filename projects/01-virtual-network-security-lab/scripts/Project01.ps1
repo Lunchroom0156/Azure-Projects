@@ -53,3 +53,37 @@ $VNET2 | Add-AzVirtualNetworkSubnetConfig -Subnet $FWSubnet2
 # Apply the change
 $VNET1 | Set-AzVirtualNetwork
 $VNET2 | Set-AzVirtualNetwork
+#--------------------------------------
+# VNET firewall
+#--------------------------------------
+$FWpip = New-AzPublicIpAddress -Name 'fw-pip' -ResourceGroupName $RG -location $Location -sku 'standard' -AllocationMethod Static
+$FW = New-Azfirewall -name 'vnet01-fw' -ResourceGroupName $RG -Location $Location -VirtualNetwork $VNET1 -PublicIpAddress $FWpip
+#--------------------------------------
+# VNET firewall policy
+#--------------------------------------
+$Fwpolicy = New-AzFirewallPolicy -Name 'fwpolicy' -ResourceGroupName $RG -Location $Location
+#--------------------------------------
+# VNET firewall rule collection
+#--------------------------------------
+$FWRule1 = New-AzFirewallPolicyNetworkRule -Name 'Allow-TCP-Internet-VNET1-3389' -Protocol 'TCP' -SourceAddress '*' -DestinationAddress '10.0.0.0/24','10.1.0.0/24' -DestinationPort 3389
+$FWRuleCollection = New-AzFirewallPolicyNetworkRuleCollection -Name 'Allow-TCP-Internet-VNET1-3389' -Priority 500 -Action 'Allow' -Rule $FWRule1
+Add-AzFirewallPolicyNetworkRuleCollection -firewallpolicy $fwpolicy -NetworkRuleCollection $FWRuleCollection
+
+$FWRule2 = New-AzFirewallPolicyNatRule -Name 'DNAT-TCP-PublicIP-VM1-3389' -Protocol 'TCP' -SourceAddress '*' -DestinationAddress $FWpip.IpAddress -DestinationPort 3389
+$FWDNATRuleCollection = New-AzFirewallPolicyNatRuleCollection -Name 'DNAT-TCP-PublicIP-VM1-3389' -Priority 500 -Action 'Allow' -Rule $FWRule2
+Add-AzFirewallPolicyNatRuleCollection -FirewallPolicy $Fwpolicy -NatRuleCollection $FWDNATRuleCollection
+
+#--------------------------------------
+# VNET peering
+#--------------------------------------
+Add-AzVirtualNetworkPeering -Name 'vnet2-spoke' -VirtualNetwork $VNET1 -RemoteVirtualNetworkId $VNET2.Id -AllowForwardedTraffic -AllowGatewayTransit
+Add-AzVirtualNetworkPeering -Name 'vnet1-hub' -VirtualNetwork $VNET2 -RemoteVirtualNetworkId $VNET1.Id -AllowForwardedTraffic -UseRemoteGateways
+#--------------------------------------
+# Create VMs
+$cred = Get-Credential -Message "Enter the username and password for the VMs."
+
+# Create VM1 in VNET1
+$VM1 = New-AzVM -Name 'vm1' -ResourceGroupName $RG -Location $Location -VirtualNetworkName $VNET1.Name -SubnetName 'subnet1' -Credential $cred
+# Create VM2 in VNET2
+$VM2 = New-AzVM -Name 'vm2' -ResourceGroupName $RG -Location $Location -VirtualNetworkName $VNET2.Name -SubnetName 'subnet2' -Credential $cred  
+
