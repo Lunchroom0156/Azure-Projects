@@ -1,3 +1,14 @@
+Script for Project 01 - Virtual Network Security Lab
+version: 1.0
+date: 02.01.2026
+
+#-----------------------------------
+# Connect to Azure account
+#-----------------------------------
+Connect-AzAccount
+#-----------------------------------
+# Variables 
+#-----------------------------------
 $RG = 'Project01-RG'
 $Location = 'UKSouth'
 
