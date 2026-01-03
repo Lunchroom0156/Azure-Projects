@@ -1,6 +1,9 @@
-Script for Project 01 - Virtual Network Security Lab
-version: 1.0
-date: 02.01.2026
+# Script for Project 01 - Virtual Network Security Lab
+# version: 1.0
+# date: 02.01.2026
+
+# Force import Az 10.2.0
+Import-Module Az -RequiredVersion 10.2.0 -Force
 
 #-----------------------------------
 # Connect to Azure account
@@ -67,6 +70,7 @@ $VNET2 | Set-AzVirtualNetwork
 #--------------------------------------
 # VNET firewall
 #--------------------------------------
+$VNET1 = Get-AzVirtualNetwork -Name 'vnet1' -ResourceGroupName $RG
 $FWpip = New-AzPublicIpAddress -Name 'fw-pip' -ResourceGroupName $RG -location $Location -sku 'standard' -AllocationMethod Static
 $FW = New-Azfirewall -name 'vnet01-fw' -ResourceGroupName $RG -Location $Location -VirtualNetwork $VNET1 -PublicIpAddress $FWpip
 #--------------------------------------
@@ -76,19 +80,19 @@ $Fwpolicy = New-AzFirewallPolicy -Name 'fwpolicy' -ResourceGroupName $RG -Locati
 #--------------------------------------
 # VNET firewall rule collection
 #--------------------------------------
-$FWRule1 = New-AzFirewallPolicyNetworkRule -Name 'Allow-TCP-Internet-VNET1-3389' -Protocol 'TCP' -SourceAddress '*' -DestinationAddress '10.0.0.0/24','10.1.0.0/24' -DestinationPort 3389
+$FWRule1 = New-AzFirewallNetworkRule -Name 'Allow-TCP-Internet-VNET1-3389' -Protocol 'TCP' -SourceAddress '*' -DestinationAddress '10.0.0.0/24','10.1.0.0/24' -DestinationPort 3389
 $FWRuleCollection = New-AzFirewallPolicyNetworkRuleCollection -Name 'Allow-TCP-Internet-VNET1-3389' -Priority 500 -Action 'Allow' -Rule $FWRule1
-Add-AzFirewallPolicyNetworkRuleCollection -firewallpolicy $fwpolicy -NetworkRuleCollection $FWRuleCollection
+Add-AzFirewallPolicyRuleCollection -FirewallPolicy $Fwpolicy -NetworkRuleCollection $FWRuleCollection
 
-$FWRule2 = New-AzFirewallPolicyNatRule -Name 'DNAT-TCP-PublicIP-VM1-3389' -Protocol 'TCP' -SourceAddress '*' -DestinationAddress $FWpip.IpAddress -DestinationPort 3389
-$FWDNATRuleCollection = New-AzFirewallPolicyNatRuleCollection -Name 'DNAT-TCP-PublicIP-VM1-3389' -Priority 500 -Action 'Allow' -Rule $FWRule2
+$FWRule2 = New-AzFirewallNatRule -Name 'DNAT-TCP-PublicIP-VM1-3389' -Protocol 'TCP' -SourceAddress '*' -DestinationAddress $FWpip.IpAddress -DestinationPort 3389
+$FWDNATRuleCollection = New-AzFirewallPolicyNatRuleCollection -Name 'DNAT-TCP-PublicIP-VM1-3389' -Priority 500 -Actiontype 'Dnat'  -Rule $FWRule2
 Add-AzFirewallPolicyNatRuleCollection -FirewallPolicy $Fwpolicy -NatRuleCollection $FWDNATRuleCollection
 
 #--------------------------------------
 # VNET peering
 #--------------------------------------
 Add-AzVirtualNetworkPeering -Name 'vnet2-spoke' -VirtualNetwork $VNET1 -RemoteVirtualNetworkId $VNET2.Id -AllowForwardedTraffic -AllowGatewayTransit
-Add-AzVirtualNetworkPeering -Name 'vnet1-hub' -VirtualNetwork $VNET2 -RemoteVirtualNetworkId $VNET1.Id -AllowForwardedTraffic -UseRemoteGateways
+Add-AzVirtualNetworkPeering -Name 'vnet1-hub' -VirtualNetwork $VNET2 -RemoteVirtualNetworkId $VNET1.Id -AllowForwardedTraffic 
 #--------------------------------------
 # Create VMs
 $cred = Get-Credential -Message "Enter the username and password for the VMs."
