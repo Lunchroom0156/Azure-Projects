@@ -18,7 +18,7 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
 ## Scripts
 - `scripts/setup-vnet.ps1` → PowerShell script to create VNets and NSGs
 
-# Steps Completed
+## Steps Completed
 1. Create resource group 'project01-rg'
 2. Create vnet's called 'vnet1' with address space '10.0.0.0' and /24 subnet.Create 'vnet2' with address space '10.1.0.0' and /24 subnet.
 4. Create NSG 'vnet1-nsg' and associate with vnet1 subnet
