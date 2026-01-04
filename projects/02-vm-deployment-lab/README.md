@@ -17,7 +17,7 @@ scaling, backup, monitoring, and basic connectivity testing.
 - Cost-Aware Design
 
 ## Scripts
-- `scripts/deploy-vms.ps1` → PowerShell script to deploy and configure VMs
+- 
 
 ## Steps Completed
 
