@@ -14,16 +14,19 @@ Work with different Azure storage types and secure them.
 - Automation
 
 ## Scripts
-- `scripts/storage-setup.ps1` → PowerShell script to provision and configure storage
+- 
 
 ## Steps Completed
 4. Create storage account with Standard LRS availability 
-`az storage account create --name 'project04storacc' -g Project04-rg -l uksouth --sku standard_lrs`
+``` markdown 
+az storage account create --name 'project04storacc' -g Project04-rg -l uksouth --sku standard_lrs`
 5. Create Blob storage account with Standard LRS availability 
-`az storage account create --name 'project04blobstoracc' -g Project04-rg -l uksouth --kind BlobStorage --sku standard_lrs --access-tier Hot `
+``` markdown 
+az storage account create --name 'project04blobstoracc' -g Project04-rg -l uksouth --kind BlobStorage --sku standard_lrs --access-tier Hot `
 > for different storage account type change the kind to the required type.
 6. Create json file called archive rule as below
-`{
+``` markdown 
+{
   "rules": [
     {
       "enabled": true,
@@ -49,17 +52,19 @@ Work with different Azure storage types and secure them.
 }`
 
 7. Run command to apply lifecycle rule
-`az storage account management-policy create --account-name project04blobstoracc --r
+``` markdown 
+az storage account management-policy create --account-name project04blobstoracc --r
 esource-group project04-rg --policy archive-rules.json` 
 8. Create Shared Access Security (SAS)
-` az storage account generate-sas \
+``` markdown 
+az storage account generate-sas \
 --account-key 00000000 \
 --account-name project04blobstoracc 
 --expiry 2026-01-09 \
 --https-only \
 --permissions acuw \ 
 --resource-types co \ 
---services b \` 
+--services b ``` 
 
 > acuw → Add, Create, Update, Write (check if all are required)
 > co → Container & Object
@@ -67,7 +72,8 @@ esource-group project04-rg --policy archive-rules.json`
 
 > the output of this will be your SAS key, note it now. It will not be displayed again
 
-9. Validate SAS 
+9. Validate SAS
+``` markdown  
 az storage blob list \
   --container-name mycontainer \
   --account-name project04blobstoracc \
