@@ -3,7 +3,8 @@
 This repository contains hands-on labs and projects for Azure Cloud Operations.
 
 Projects:
-1. 01 Virtual Network Security Lab
+1. [01 Virtual Network Security Lab]
+(projects\01-virtual-network-security-lab\README.md)
 2. 02 Vm Deployment Lab
 3. 03 Identity Access Management
 4. 04 Azure Storage Solutions
