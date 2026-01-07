@@ -18,14 +18,12 @@ Work with different Azure storage types and secure them.
 
 ## Steps Completed
 4. Create storage account with Standard LRS availability 
-``` markdown 
 az storage account create --name 'project04storacc' -g Project04-rg -l uksouth --sku standard_lrs`
 5. Create Blob storage account with Standard LRS availability 
-``` markdown 
-az storage account create --name 'project04blobstoracc' -g Project04-rg -l uksouth --kind BlobStorage --sku standard_lrs --access-tier Hot `
+az storage account create --name 'project04blobstoracc' -g Project04-rg -l uksouth --kind BlobStorage --sku standard_lrs --access-tier Hot ```
 > for different storage account type change the kind to the required type.
 6. Create json file called archive rule as below
-``` markdown 
+``` json
 {
   "rules": [
     {
@@ -49,14 +47,13 @@ az storage account create --name 'project04blobstoracc' -g Project04-rg -l uksou
       }
     }
   ]
-}`
+}
 
 7. Run command to apply lifecycle rule
-``` markdown 
 az storage account management-policy create --account-name project04blobstoracc --r
-esource-group project04-rg --policy archive-rules.json` 
+esource-group project04-rg --policy archive-rules.json``` 
 8. Create Shared Access Security (SAS)
-``` markdown 
+
 az storage account generate-sas \
 --account-key 00000000 \
 --account-name project04blobstoracc 
@@ -73,7 +70,7 @@ az storage account generate-sas \
 > the output of this will be your SAS key, note it now. It will not be displayed again
 
 9. Validate SAS
-``` markdown  
+
 az storage blob list \
   --container-name mycontainer \
   --account-name project04blobstoracc \
