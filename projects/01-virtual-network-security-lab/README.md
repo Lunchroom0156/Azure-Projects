@@ -83,4 +83,9 @@ Build a secure, segmented Azure network with multiple VNets, subnets, and firewa
    - **Remote peering**: link name `vnet2-spoke`, allow forwarding for `vnet2`
    - **Local peering**: link name `vnet1-hub`, allow forwarding for `vnet1`
 
+   ## Design Decisions
+- Azure Firewall was used to centralize traffic filtering across VNets.
+- RBAC roles were assigned at the resource group level to follow least-privilege principles.
+- VMs were deployed without public IPs to reduce attack surface.
+
 
