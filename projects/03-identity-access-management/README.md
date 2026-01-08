@@ -15,7 +15,7 @@ Manage Entra ID identities, groups, roles, and enforce security policies.
 - Security & Access Management
 
 ## Scripts
-- `scripts/aad-setup.ps1` → PowerShell script to create users and configure roles
+- `
 
 ## Steps Completed
 
