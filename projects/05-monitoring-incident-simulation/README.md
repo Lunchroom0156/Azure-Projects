@@ -24,7 +24,7 @@ Implement monitoring solutions and simulate incidents in Azure.
 - Azure Monitor
 
 ## Steps Completed
-4. Created following resources
+4. Created the following resources
 - Resource group: project05-rg
 - Virtual Network: VNET1 / Subnet: Subnet1
 - Virtual Machine VM1, VM2
@@ -38,7 +38,7 @@ az monitor log-analytics workspace create \
 ```
 6. Create DCR and associated VMs
 - Name DCR1
-- Date Sources: Performance Counters. CPU,Memory,Disks,Network
+- Data Sources: Performance Counters. CPU,Memory,Disks,Network
 - Destitation: project05_Workspace
 - Resources: VM1, VM2
 ![alt text](image.png)
@@ -55,15 +55,23 @@ az monitor action-group create \
 8. Create monitoring alert rules
 ```cli
 az monitor metrics alert create \
-  --name HighCPUAlert \
-  --resource-group project05-rg \
-  --scopes /subscriptions/<sub-id>/resourceGroups/<RG>/providers/Microsoft.Compute/virtualMachines/<VM-name> \
-  --condition "Percentage CPU > 80" \
-  --description "Alert when CPU exceeds 80%" \
-  --action-group MyActionGroup
-  ```
+--name HighCPUAlert \
+--resource-group project05-rg \
+--scopes /subscriptions/2A6670F7-E974-44C4-BAA3-83E24A4C90AC/resourceGroups/project05-rg \  #scope all VMs in the RG
+--condition "avg Percentage CPU > 80" \
+--description "Alert when CPU exceeds 80%" \
+--target-resource-type Microsoft.Compute/virtualMachines \                                  # required when scoping RG
+--target-resource-region uksouth \                                                          # required when scoping RG
+--action /subscriptions/2A6670F7-E974-44C4-BAA3-83E24A4C90AC/resourceGroups/Project05-rg/providers/microsoft.insights/actionGroups/ActionGroup1
+```
+> Scoped resource group because both vm's in same resource group
 
   9. Created dashboard
   ![alt text](image-1.png)
 
+## Key Takeaways
+- Learned how Azure Monitor collects and analyzes VM metrics
+- Gained experience configuring Data Collection Rules
+- Practiced incident detection using metric-based alerts
+- Improved understanding of alerting workflows and dashboards
 
