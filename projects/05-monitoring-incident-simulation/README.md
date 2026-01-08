@@ -70,6 +70,6 @@ az monitor metrics alert create \
     Click + New dashboard.
     Add tiles: metrics, logs, resource health, etc.
     Save and share.
-
+![alt text](image-1.png)
 
 
