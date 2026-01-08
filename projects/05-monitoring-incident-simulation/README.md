@@ -63,13 +63,7 @@ az monitor metrics alert create \
   --action-group MyActionGroup
   ```
 
-  9. Create dashboard
-  a. Use Azure Portal
-    Go to Azure Portal.
-    Navigate to Dashboard.
-    Click + New dashboard.
-    Add tiles: metrics, logs, resource health, etc.
-    Save and share.
-![alt text](image-1.png)
+  9. Created dashboard
+  ![alt text](image-1.png)
 
 
