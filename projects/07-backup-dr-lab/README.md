@@ -55,9 +55,23 @@ $item = Get-AzRecoveryServicesBackupItem  -Container $container -WorkloadType "A
 # Backup item & monitor job
  Backup-AzRecoveryServicesBackupItem -Item $item
  Get-AzRecoveryServicesBackupJob -Status InProgress
+![alt text](image-4.png)
+
 
 # ---
 # Create recovery service vault in desitation 
  New-AzRecoveryServicesVault -Name RSVault-ASR -ResourceGroupName backup-lab -Location uksouth
  Set-AzRecoveryServicesAsrVaultContext -Vault $asrVault
 
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+# Test Failover
+![alt text](image-5.png)
+
+# Failover cleanup
+![alt text](image-3.png)
