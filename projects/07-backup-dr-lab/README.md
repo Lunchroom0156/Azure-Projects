@@ -75,3 +75,11 @@ $item = Get-AzRecoveryServicesBackupItem  -Container $container -WorkloadType "A
 
 # Failover cleanup
 ![alt text](image-3.png)
+
+# ------- Clean up ------- #
+
+Disable replication
+Stop VM Backup
+Delete Vaults
+Delete resource groups
+
