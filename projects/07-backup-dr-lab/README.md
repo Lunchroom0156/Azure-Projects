@@ -23,17 +23,17 @@ Implement Azure Backup and Site Recovery for business continuity.
 ## Scripts
 - `scripts/backup-setup.ps1` → PowerShell script to configure backups and DR
 
-## Create resource group
+### Create resource group
 new-azResourceGroup -Name backup-lab -Location ukwest  
 $rg = "backup-lab"
 
 
-## Create VNet
+### Create VNet
 $vnet = new-azvirtualNetwork -ResourceGroupName backup-lab -Location ukwest -Name vnet1 -AddressPrefix 10.0.0.0/16 `
 $subnet = Add-AzVirtualNetworkSubnetConfig -AddressPrefix 10.0.0.0/24  -Name Subnet1 -VirtualNetwork $vnet `       
 Set-AzVirtualNetwork -VirtualNetwork $subnet
 
-## Create VMs
+### Create VMs
 New-AzVm `
     -ResourceGroupName 'Backup-lab' `
     -Name 'myVM' `
@@ -44,49 +44,51 @@ New-AzVm `
     -SecurityGroupName 'myNetworkSecurityGroup' `
     -OpenPorts 80,3389
 
- New-AzRecoveryServicesVault -Name RSVault -ResourceGroupName $rg -Location ukwest 
+## ----- Backup & Recovery
 
-## Set Vault Context
+New-AzRecoveryServicesVault -Name RSVault -ResourceGroupName $rg -Location ukwest 
+
+### Set Vault Context
  Get-AzRecoveryServicesVault -Name "RSVault" | Set-AzRecoveryServicesVaultContext
 
-## Get Backup policy
+#### Get Backup policy
  $policy = Get-AzRecoveryServicesBackupProtectionPolicy -Name "DefaultPolicy"
 
-## Enable protection and apply the policy
+#### Enable protection and apply the policy
  Enable-AzRecoveryServicesBackupProtection -ResourceGroupName "backup-lab" -Name $vmname -Policy $policy
 
-## Find the container 
+#### Find the container 
  $container = get-azrecoveryservicesbackupcontainer -containertype "AzureVM" -friendlyName $vmName
 
-## Get backup item
+#### Get backup item
 $item = Get-AzRecoveryServicesBackupItem  -Container $container -WorkloadType "AzureVM"
 
-# Backup item & monitor job
+### Backup item & monitor job
  Backup-AzRecoveryServicesBackupItem -Item $item
  Get-AzRecoveryServicesBackupJob -Status InProgress
 ![alt text](image-4.png)
 
 
 # ---
-## Create recovery service vault in destination region
+### Create recovery service vault in destination region
 $asrVault = Get-AzRecoveryServicesVault `
     -Name "RSVault-ASR" `
     -ResourceGroupName "backup-lab"
  New-AzRecoveryServicesVault -Name RSVault-ASR -ResourceGroupName backup-lab -Location uksouth
  Set-AzRecoveryServicesAsrVaultContext -Vault $asrVault
 
- Ran into issues with powershell, moved to using portal.
+#### Ran into issues with powershell, moved to using portal.
 
 ![alt text](image.png)
 
 ![alt text](image-1.png)
 
-## Test Failover
+### Test Failover
 ![alt text](image-2.png)
 
 ![alt text](image-5.png)
 
-## Failover cleanup
+### Failover cleanup
 ![alt text](image-3.png)
 
 ## ------- Clean up ------- #
